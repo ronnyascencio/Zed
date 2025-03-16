@@ -1,0 +1,209 @@
+{
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "auto_install_extensions": {
+    "dart": true,
+    "git-firefly": true,
+    "ruff": true,
+    "xcode-themes": true,
+    "toml": true
+  },
+  "ui_font_family": "JetBrains Mono",
+  "buffer_font_family": "JetBrains Mono",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "relative_line_numbers": true,
+  "icon_theme": "Material Icon Theme",
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light Soft",
+    "dark": "Tokyo Night"
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "terminal": {
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
+    }
+  },
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "none",
+    "reportOptionalMemberAccess": "none",
+    "reportWildcardImportFromLibrary": "none",
+    "reportRedeclaration": "none",
+    "reportAttributeAccessIssue": "none",
+    "reportInvalidTypeForm": "none",
+    "reportAssignmentType": "none",
+    "reportUnnecessaryTypeIgnoreComment": "none",
+    "reportPrivateImportUsage": "none"
+  },
+
+  "pane_split_direction_vertical": "right",
+  "border_size": 0,
+  "autosave": "on_focus_change",
+  "restore_on_startup": "none",
+  "git_status": true,
+  "format_on_save": "on",
+  "git": {
+    "git_gutter": "tracked_files",
+    "gutter_debounce": null,
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  "project_panel": {
+    "button": true,
+    "dock": "right",
+    "file_icons": true,
+    "auto_reveal_entries": true
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "scrollbar": {
+    "show": "never"
+  },
+  "tab_bar": {
+    "show": false
+  },
+
+  "lsp": {
+    "ansible-language-server": {
+      "settings": {
+        "ansible": { "path": "ansible" },
+        "executionEnvironment": false
+      },
+      "python": { "interpreterPath": ".venv/bin/python" },
+      "validation": {
+        "enabled": true,
+        "lint": { "enabled": true, "path": "ansible-lint" }
+      },
+      "ruff": {
+        "initialization_options": {
+          "settings": {
+            // Ruff server settings goes here
+            "lineLength": 80,
+            "lint": {
+              "extendSelect": ["I"]
+            }
+          }
+        }
+      }
+    },
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "strict"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    }
+  },
+
+  "languages": {
+    "Python": {
+      "language_servers": ["ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  },
+  "JavaScript": {
+    "language_servers": ["ts_ls"],
+    "format_on_save": "on",
+    "formatter": [
+      {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    ]
+  },
+  "TypeScript": {
+    "language_servers": ["ts_ls"],
+    "format_on_save": "on",
+    "formatter": [
+      {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    ]
+  },
+  "JSX": {
+    "language_servers": ["ts_ls"],
+    "format_on_save": "on",
+    "formatter": [
+      {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    ]
+  },
+  "TSX": {
+    "language_servers": ["ts_ls"],
+    "format_on_save": "on",
+    "formatter": [
+      {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    ]
+  },
+  "Vue": {
+    "language_servers": ["vls"],
+    "format_on_save": "on",
+    "formatter": [
+      {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    ]
+  },
+  "HTML": {
+    "language_servers": ["html"],
+    "format_on_save": "on",
+    "formatter": [
+      {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    ]
+  }
+}
