@@ -2,6 +2,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
+  "show_edit_predictions": false,
   "auto_install_extensions": {
     "dart": true,
     "git-firefly": true,
