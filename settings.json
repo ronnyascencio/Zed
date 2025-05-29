@@ -1,42 +1,6 @@
 {
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
-  "show_edit_predictions": false,
-  "auto_install_extensions": {
-    "dart": true,
-    "git-firefly": true,
-    "ruff": true,
-    "xcode-themes": true,
-    "toml": true,
-    "tokyo-night-theme": true
-  },
-  "ui_font_family": "JetBrains Mono",
-  "buffer_font_family": "JetBrains Mono",
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "theme": "Tokyo Night",
   "relative_line_numbers": false,
-  "icon_theme": "Colored Zed Icons Theme Dark",
-  "theme": {
-    "mode": "system",
-    "light": "Tokyo Night",
-    "dark": "Tokyo Night"
-  },
-  "assistant": {
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
-    },
-    "version": "2"
-  },
-  "terminal": {
-    "detect_venv": {
-      "on": {
-        "directories": [".env", "env", ".venv", "venv"],
-        "activate_script": "default"
-      }
-    }
-  },
   "pane_split_direction_vertical": "right",
   "border_size": 0,
   "autosave": "on_focus_change",
@@ -48,6 +12,14 @@
     "gutter_debounce": null,
     "inline_blame": {
       "enabled": true
+    }
+  },
+  "terminal": {
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
     }
   },
   "project_panel": {
