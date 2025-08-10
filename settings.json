@@ -1,62 +1,33 @@
 {
-  "theme": "Tokyo Night",
-  "relative_line_numbers": false,
-  "pane_split_direction_vertical": "right",
-  "border_size": 0,
-  "autosave": "on_focus_change",
-  "restore_on_startup": "none",
-  "git_status": true,
-  "format_on_save": "on",
-  "git": {
-    "git_gutter": "tracked_files",
-    "gutter_debounce": null,
-    "inline_blame": {
-      "enabled": true
-    }
+  // Apariencia minimalista y legible
+  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "features": {
+    "edit_prediction_provider": "copilot"
   },
-  "terminal": {
-    "detect_venv": {
-      "on": {
-        "directories": [".env", "env", ".venv", "venv"],
-        "activate_script": "default"
-      }
-    }
-  },
-  "project_panel": {
-    "button": true,
-    "dock": "left",
-    "file_icons": true,
-    "auto_reveal_entries": true
+  "theme": "One Dark",
+  "base_keymap": "VSCode", // Atajos estilo PyCharm
+  "buffer_font_size": 14,
+  "buffer_line_height": "comfortable",
+  "toolbar": { "breadcrumbs": false },
+  "active_pane_modifiers": {
+    "border_size": 0.0,
+    "inactive_opacity": 1.0
   },
 
-  "collaboration_panel": {
-    "dock": "right"
-  },
-  "scrollbar": {
-    "show": "never"
-  },
-  "tab_bar": {
-    "show": false
+  // LSP – lenguaje Python con Pyright
+  //
+  "languages": {
+    "Python": {
+      "format_on_save": "on",
+      "ensure_final_newline_on_save": true,
+      "language_servers": ["ruff"]
+    }
   },
   "lsp": {
-    "ansible-language-server": {
-      "settings": {
-        "ansible": { "path": "ansible" },
-        "executionEnvironment": false
-      },
-      "python": { "interpreterPath": ".venv/bin/python" },
-      "validation": {
-        "enabled": true,
-        "lint": { "enabled": true, "path": "ansible-lint" }
-      },
-      "ruff": {
-        "initialization_options": {
-          "settings": {
-            "lineLength": 80,
-            "lint": {
-              "extendSelect": ["I"]
-            }
-          }
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "configuration": "ruff.toml"
         }
       }
     },
@@ -67,100 +38,65 @@
           "typeCheckingMode": "strict"
         },
         "python": {
-          "pythonPath": ".venv/bin/python"
+          "pythonPath": ".venv/Scripts/python"
+        }
+      }
+    },
+    "pyrefly": {
+      "binary": {
+        "path": ".venv/bin/pyrefly",
+        "arguments": ["lsp"]
+      },
+      "settings": {
+        "python": {
+          "pythonPath": ".venv/Scripts/python"
+        },
+        "pyrefly": {
+          "project_includes": ["src/**/*.py", "tests/**/*.py"],
+          "project_excludes": ["**/.[!/.]*", "**/*venv/**"],
+          "search_path": ["src"],
+          "ignore_errors_in_generated_code": true
         }
       }
     }
   },
-  "languages": {
-    "Python": {
-      "language_servers": ["pyright", "ruff"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
-        },
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        }
-      ]
+
+  // Terminal – activación automática del entorno virtual
+  "terminal": {
+    "shell": "system",
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
     },
-    "JavaScript": {
-      "language_servers": ["ts_ls"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "external": {
-            "command": "prettier",
-            "arguments": ["--stdin-filepath", "{buffer_path}"]
-          }
-        }
-      ]
+    "working_directory": "current_project_directory",
+    "blinking": "on"
+  },
+
+  // Git
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
     },
-    "TypeScript": {
-      "language_servers": ["ts_ls"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "external": {
-            "command": "prettier",
-            "arguments": ["--stdin-filepath", "{buffer_path}"]
-          }
-        }
-      ]
-    },
-    "JSX": {
-      "language_servers": ["ts_ls"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "external": {
-            "command": "prettier",
-            "arguments": ["--stdin-filepath", "{buffer_path}"]
-          }
-        }
-      ]
-    },
-    "TSX": {
-      "language_servers": ["ts_ls"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "external": {
-            "command": "prettier",
-            "arguments": ["--stdin-filepath", "{buffer_path}"]
-          }
-        }
-      ]
-    },
-    "Vue": {
-      "language_servers": ["vls"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "external": {
-            "command": "prettier",
-            "arguments": ["--stdin-filepath", "{buffer_path}"]
-          }
-        }
-      ]
-    },
-    "HTML": {
-      "language_servers": ["html"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "external": {
-            "command": "prettier",
-            "arguments": ["--stdin-filepath", "{buffer_path}"]
-          }
-        }
-      ]
-    }
+    "hunk_style": "staged_hollow"
+  },
+  "minimap": {
+    "show": "never", // When to show (auto, always, never)
+    "display_in": "active_editor", // Where to show (active_editor, all_editor)
+    "thumb": "always", // When to show thumb (always, hover)
+    "thumb_border": "left_open", // Thumb border (left_open, right_open, full, none)
+    "max_width_columns": 80, // Maximum width of minimap
+    "current_line_highlight": null // Highlight current line (null, line, gutter)
+  },
+
+  // Otros ajustes útiles
+  "cursor_blink": true,
+  "autosave": "on_focus_change",
+  "restore_on_startup": "none",
+  "cursor_shape": "block",
+  "scrollbar": {
+    "diagnostics": "all"
   }
 }
