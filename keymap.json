@@ -13,9 +13,22 @@
     }
   },
   {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "ctrl-r": "task::Spawn",
+      "ctrl-shift-r": "task::Rerun"
+    }
+  },
+  {
     "context": "Editor",
     "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "ctrl-alt-r": ["task::Spawn", { "task_name": "Run Selected Python Code" }]
     }
   }
 ]

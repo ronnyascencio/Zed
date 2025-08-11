@@ -1,80 +1,117 @@
 {
-  // Apariencia minimalista y legible
+  "agent": {
+    "always_allow_tool_actions": true
+  },
   "icon_theme": "JetBrains New UI Icons (Dark)",
   "features": {
     "edit_prediction_provider": "copilot"
   },
-  "theme": "One Dark",
-  "base_keymap": "VSCode", // Atajos estilo PyCharm
+  "theme": "JetBrains Dark",
+  "base_keymap": "VSCode",
   "buffer_font_size": 14,
   "buffer_line_height": "comfortable",
-  "toolbar": { "breadcrumbs": false },
+  "toolbar": {
+    "breadcrumbs": false
+  },
   "active_pane_modifiers": {
     "border_size": 0.0,
     "inactive_opacity": 1.0
   },
-
-  // LSP – lenguaje Python con Pyright
-  //
   "languages": {
     "Python": {
       "format_on_save": "on",
       "ensure_final_newline_on_save": true,
-      "language_servers": ["ruff"]
+      "language_servers": [
+        "basedpyright",
+        "ruff"
+      ],
+      "formatter": {
+        "external": {
+          "command": "/home/ronny/.local/bin/ruff",
+          "arguments": [
+            "format",
+            "--stdin-filename",
+            "{buffer_path}",
+            "-"
+          ]
+        }
+      }
     }
   },
   "lsp": {
     "ruff": {
       "initialization_options": {
         "settings": {
-          "configuration": "ruff.toml"
+          "configuration": "pyproject.toml"
         }
       }
     },
-    "pyright": {
-      "settings": {
-        "python.analysis": {
-          "diagnosticMode": "workspace",
-          "typeCheckingMode": "strict"
-        },
-        "python": {
-          "pythonPath": ".venv/Scripts/python"
-        }
-      }
-    },
-    "pyrefly": {
+    "basedpyright": {
       "binary": {
-        "path": ".venv/bin/pyrefly",
-        "arguments": ["lsp"]
+        "path": "/home/ronny/.local/bin/basedpyright-langserver",
+        "arguments": [
+          "--stdio"
+        ]
       },
       "settings": {
-        "python": {
-          "pythonPath": ".venv/Scripts/python"
+        "basedpyright": {
+          "analysis": {
+            "diagnosticMode": "workspace",
+            "autoSearchPaths": true,
+            "autoImportCompletions": true,
+            "useLibraryCodeForTypes": true,
+            "typeCheckingMode": "standard",
+            "logLevel": "Information",
+            "diagnosticSeverityOverrides": {
+              "reportUnknownMemberType": "information",
+              "reportUnknownVariableType": "information",
+              "reportUnknownParameterType": "information",
+              "reportMissingTypeStubs": "none"
+            },
+            "inlayHints": {
+              "variableTypes": false,
+              "functionReturnTypes": false,
+              "callArgumentNames": false,
+              "pytestParameters": false
+            }
+          }
         },
-        "pyrefly": {
-          "project_includes": ["src/**/*.py", "tests/**/*.py"],
-          "project_excludes": ["**/.[!/.]*", "**/*venv/**"],
-          "search_path": ["src"],
-          "ignore_errors_in_generated_code": true
+        "python": {
+          "analysis": {
+            "extraPaths": [
+              "./cli",
+              "./core",
+              "./dcc",
+              "./backend"
+            ],
+            "diagnosticMode": "workspace"
+          }
         }
       }
     }
   },
-
-  // Terminal – activación automática del entorno virtual
   "terminal": {
     "shell": "system",
     "detect_venv": {
       "on": {
-        "directories": [".env", "env", ".venv", "venv"],
+        "directories": [
+          ".env",
+          "env",
+          ".venv",
+          "venv"
+        ],
         "activate_script": "default"
       }
     },
     "working_directory": "current_project_directory",
-    "blinking": "on"
+    "blinking": "on",
+    "env": {
+      "PYTHONPATH": ".:./cli:./core:./dcc:./backend"
+    }
   },
-
-  // Git
+  "tasks": {
+    "default": "Run Python File"
+  },
   "git": {
     "git_gutter": "tracked_files",
     "inline_blame": {
@@ -83,20 +120,25 @@
     "hunk_style": "staged_hollow"
   },
   "minimap": {
-    "show": "never", // When to show (auto, always, never)
-    "display_in": "active_editor", // Where to show (active_editor, all_editor)
-    "thumb": "always", // When to show thumb (always, hover)
-    "thumb_border": "left_open", // Thumb border (left_open, right_open, full, none)
-    "max_width_columns": 80, // Maximum width of minimap
-    "current_line_highlight": null // Highlight current line (null, line, gutter)
+    "show": "never",
+    "display_in": "active_editor",
+    "thumb": "always",
+    "thumb_border": "left_open",
+    "max_width_columns": 80,
+    "current_line_highlight": null
   },
-
-  // Otros ajustes útiles
   "cursor_blink": true,
   "autosave": "on_focus_change",
   "restore_on_startup": "none",
   "cursor_shape": "block",
   "scrollbar": {
     "diagnostics": "all"
+  },
+  "show_completions_on_input": true,
+  "file_types": {
+    "Python": [
+      "py",
+      "pyi"
+    ]
   }
 }

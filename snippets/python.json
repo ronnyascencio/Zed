@@ -1,0 +1,194 @@
+{
+  "--- Core Python Snippets ---": {},
+  "Default Function": {
+    "prefix": "def",
+    "description": "Default function template",
+    "body": [
+      "def ${1:function_name}(${2:args}):",
+      "\t\"\"\"${3:docstring}\"\"\"",
+      "\t$0"
+    ]
+  },
+  "Function with Type Hints": {
+    "prefix": "deft",
+    "description": "Function template with type hints",
+    "body": [
+      "def ${1:function_name}(${2:arg}: ${3:str}) -> ${4:str}:",
+      "\t\"\"\"${5:docstring}\"\"\"",
+      "\t$0"
+    ]
+  },
+  "Main Execution Block": {
+    "prefix": "main",
+    "description": "Main execution block (`if __name__ == '__main__':`)",
+    "body": [
+      "if __name__ == \"__main__\":",
+      "\t$0"
+    ]
+  },
+  "Python Class Definition": {
+    "prefix": "class",
+    "description": "Basic Python class definition",
+    "body": [
+      "class ${1:ClassName}:",
+      "\t\"\"\"${2:Class docstring}\"\"\"",
+      "\tdef __init__(self, ${3:params}):",
+      "\t\t\"\"\"${4:Constructor docstring}\"\"\"",
+      "\t\t$0"
+    ]
+  },
+  "Pydantic Class Model": {
+    "prefix": "pydantic",
+    "description": "Pydantic BaseModel class for data validation",
+    "body": [
+      "from pydantic import BaseModel",
+      "",
+      "class ${1:ModelName}(BaseModel):",
+      "\t${2:field_name}: ${3:str} = ${4:None}",
+      "\t$0"
+    ]
+  },
+  "For Loop (iterable)": {
+    "prefix": "for",
+    "description": "For loop over an iterable",
+    "body": [
+      "for ${1:item} in ${2:iterable}:",
+      "\t$0"
+    ]
+  },
+  "Try-Except Block": {
+    "prefix": "try",
+    "description": "Try-except block with error handling",
+    "body": [
+      "try:",
+      "\t$1",
+      "except ${2:Exception} as e:",
+      "\tprint(f\"An error occurred: {e}\")",
+      "finally:",
+      "\t$0"
+    ]
+  },
+  "With Open File I/O": {
+    "prefix": "with",
+    "description": "File I/O with `with open`",
+    "body": [
+      "with open('${1:file.txt}', '${2:w}') as ${3:f}:",
+      "\t$0"
+    ]
+  },
+  "List Comprehension": {
+    "prefix": "lcomp",
+    "description": "List comprehension template",
+    "body": [
+      "${1:new_list} = [${2:expression} for ${3:item} in ${4:iterable}]",
+      "$0"
+    ]
+  },
+
+  "--- FastAPI Snippets ---": {},
+  "FastAPI App Boilerplate": {
+    "prefix": "fastapi",
+    "description": "FastAPI application boilerplate with a root route",
+    "body": [
+      "from fastapi import FastAPI",
+      "app = FastAPI()",
+      "",
+      "@app.get(\"/\")",
+      "def read_root():",
+      "\treturn {\"message\": \"Hello, World\"}",
+      "\t$0"
+    ]
+  },
+  "FastAPI GET Route": {
+    "prefix": "fastapiget",
+    "description": "FastAPI GET route with a path parameter",
+    "body": [
+      "@app.get(\"/${1:items}/{item_id}\")",
+      "def read_${1:item}(item_id: int, ${2:q}: ${3:str} = None):",
+      "\treturn {\"item_id\": item_id, \"q\": ${2:q}}",
+      "\t$0"
+    ]
+  },
+  "FastAPI POST Route": {
+    "prefix": "fastapipost",
+    "description": "FastAPI POST route with a Pydantic model",
+    "body": [
+      "from pydantic import BaseModel",
+      "",
+      "class ${1:Item}(BaseModel):",
+      "\tname: str",
+      "\tdescription: str | None = None",
+      "\tprice: float",
+      "",
+      "@app.post(\"/${2:items}/\")",
+      "def create_${2:item}(${3:item}: ${1:Item}):",
+      "\treturn ${3:item}",
+      "\t$0"
+    ]
+  },
+  "FastAPI Dependency": {
+    "prefix": "fastapidep",
+    "description": "FastAPI dependency injection function",
+    "body": [
+      "async def get_${1:token}():",
+      "\t${2:token} = ${3:...}",
+      "\treturn ${2:token}",
+      "\t$0"
+    ]
+  },
+
+  "--- DCC Tools Snippets ---": {},
+  "Maya Commands": {
+    "prefix": "maya",
+    "description": "Import and use Maya commands (cmds)",
+    "body": [
+      "import maya.cmds as cmds",
+      "",
+      "cmds.${1:command}(${2:args})",
+      "$0"
+    ]
+  },
+  "Blender Python API": {
+    "prefix": "bpy",
+    "description": "Import and use Blender Python API",
+    "body": [
+      "import bpy",
+      "",
+      "${1:obj} = bpy.context.${2:active_object}",
+      "print(${1:obj}.name)",
+      "$0"
+    ]
+  },
+  "Nuke Node Creation": {
+    "prefix": "nuke",
+    "description": "Create a new Nuke node",
+    "body": [
+      "import nuke",
+      "",
+      "node = nuke.nodes.${1:NodeName}()",
+      "$0"
+    ]
+  },
+  "Houdini Python API": {
+    "prefix": "hou",
+    "description": "Import and use Houdini Python API",
+    "body": [
+      "import hou",
+      "",
+      "node = hou.node(\"/obj/${1:geo1}\")",
+      "print(node.path())",
+      "$0"
+    ]
+  },
+  "Guerilla Render Python API": {
+    "prefix": "guerilla",
+    "description": "Import and use Guerilla Render Python API",
+    "body": [
+      "import guerilla",
+      "",
+      "root = guerilla.getrootnode()",
+      "print(root.getname())",
+      "$0"
+    ]
+  }
+}
