@@ -43,42 +43,6 @@
           }
         }
       }
-    },
-    "basedpyright": {
-      "binary": {
-        "path": "/home/ronny/.local/bin/basedpyright-langserver",
-        "arguments": ["--stdio"]
-      },
-      "settings": {
-        "basedpyright": {
-          "analysis": {
-            "diagnosticMode": "workspace",
-            "autoSearchPaths": true,
-            "autoImportCompletions": true,
-            "useLibraryCodeForTypes": true,
-            "typeCheckingMode": "standard",
-            "logLevel": "Information",
-            "diagnosticSeverityOverrides": {
-              "reportUnknownMemberType": "information",
-              "reportUnknownVariableType": "information",
-              "reportUnknownParameterType": "information",
-              "reportMissingTypeStubs": "none"
-            },
-            "inlayHints": {
-              "variableTypes": false,
-              "functionReturnTypes": false,
-              "callArgumentNames": false,
-              "pytestParameters": false
-            }
-          }
-        },
-        "python": {
-          "analysis": {
-            "extraPaths": ["./cli", "./core", "./dcc", "./backend"],
-            "diagnosticMode": "workspace"
-          }
-        }
-      }
     }
   },
   "terminal": {
