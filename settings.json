@@ -1,35 +1,85 @@
 {
+  // =========================
+  // 🧠 Agente (acciones IA / herramientas)
+  // =========================
   "agent": {
     "always_allow_tool_actions": true
   },
+
+  // =========================
+  // 🎨 Apariencia (Tema, iconos, fuentes)
+  // =========================
+  "theme": "JetBrains New Dark",
   "icon_theme": "JetBrains New UI Icons (Dark)",
+  "base_keymap": "VSCode", // Atajos estilo VSCode
+  "buffer_font_size": 14, // Tamaño de fuente
+  "buffer_line_height": "comfortable", // Altura de línea
+  "cursor_shape": "block", // Forma del cursor
+  "cursor_blink": true, // Cursor parpadeante
+
+  // =========================
+  // 🛠️ Funcionalidades
+  // =========================
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot" // Usa GitHub Copilot para predicciones
   },
-  "theme": "JetBrains Dark",
-  "base_keymap": "VSCode",
-  "buffer_font_size": 14,
-  "buffer_line_height": "comfortable",
+  "auto_update": true, // Auto actualizar Zed
+  "autosave": "on_focus_change", // Guardar al cambiar de ventana
+  "restore_on_startup": "none", // No restaurar sesiones previas
+  "show_completions_on_input": true, // Mostrar autocompletado al escribir
+  "auto_signature_help": true, // Ayuda de parámetros (signature help)
+
+  // =========================
+  // 📂 Navegación UI
+  // =========================
   "toolbar": {
-    "breadcrumbs": false
+    "breadcrumbs": false // Ocultar migas de pan
   },
+  "minimap": {
+    "show": "never",
+    "display_in": "active_editor",
+    "thumb": "always",
+    "thumb_border": "left_open",
+    "max_width_columns": 80,
+    "current_line_highlight": null
+  },
+  "scrollbar": {
+    "diagnostics": "all" // Mostrar diagnósticos en la barra
+  },
+
+  // =========================
+  // 🪟 Paneles activos
+  // =========================
   "active_pane_modifiers": {
     "border_size": 0.0,
     "inactive_opacity": 1.0
   },
+
+  // =========================
+  // 🐍 Lenguajes / LSP
+  // =========================
   "languages": {
     "Python": {
-      "format_on_save": "on",
-      "ensure_final_newline_on_save": true,
-      "language_servers": ["ty", "ruff"],
+      "format_on_save": "on", // Formato automático al guardar
+      "ensure_final_newline_on_save": true, // Asegurar newline al final
+      "language_servers": ["ty", "ruff"], // LSPs activos
       "formatter": {
+        // Configurar Ruff como formateador
         "external": {
           "command": "/home/ronny/.local/bin/ruff",
           "arguments": ["format", "--stdin-filename", "{buffer_path}", "-"]
         }
       }
+    },
+    "JSON": {
+      "format_on_save": "on", // Auto formatear JSON al guardar
+      "formatter": "prettier" // Usar prettier si está disponible
     }
   },
+
+  // =========================
+  // ⚙️ LSP (Configuración avanzada de servidores)
+  // =========================
   "lsp": {
     "ty": {
       "settings": {
@@ -45,8 +95,12 @@
       }
     }
   },
+
+  // =========================
+  // 🖥️ Terminal integrado
+  // =========================
   "terminal": {
-    "shell": "system",
+    "shell": "system", // Usar shell del sistema
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv"],
@@ -59,9 +113,15 @@
       "PYTHONPATH": ".:./cli:./core:./dcc:./backend"
     }
   },
-  "tasks": {
-    "default": "Run Python File"
-  },
+
+  // =========================
+  // ▶️ Tareas
+  // =========================
+  "tasks": {},
+
+  // =========================
+  // 🔀 Git
+  // =========================
   "git": {
     "git_gutter": "tracked_files",
     "inline_blame": {
@@ -69,22 +129,23 @@
     },
     "hunk_style": "staged_hollow"
   },
-  "minimap": {
-    "show": "never",
-    "display_in": "active_editor",
-    "thumb": "always",
-    "thumb_border": "left_open",
-    "max_width_columns": 80,
-    "current_line_highlight": null
+
+  // =========================
+  // 🩺 Diagnósticos
+  // =========================
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 150,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": null
+    }
   },
-  "cursor_blink": true,
-  "autosave": "on_focus_change",
-  "restore_on_startup": "none",
-  "cursor_shape": "block",
-  "scrollbar": {
-    "diagnostics": "all"
-  },
-  "show_completions_on_input": true,
+
+  // =========================
+  // 📄 Tipos de archivos
+  // =========================
   "file_types": {
     "Python": ["py", "pyi"]
   }
