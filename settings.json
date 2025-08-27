@@ -66,7 +66,7 @@
       "formatter": {
         // Configurar Ruff como formateador
         "external": {
-          "command": "/home/ronny/.local/bin/ruff",
+          "command": "/home/ronnyascencio/.local/bin/ruff",
           "arguments": ["format", "--stdin-filename", "{buffer_path}", "-"]
         }
       }
@@ -85,7 +85,7 @@
       "settings": {
         "ty": {
           "binary": {
-            "path": "/home/rascencio/.local/bin/ty",
+            "path": "/home/ronnyascencio/.local/bin/ty",
             "arguments": ["server"]
           },
           "inlayHints": {
