@@ -82,20 +82,22 @@
   // =========================
   "lsp": {
     "ty": {
+      "command": "/home/ronnyascencio/.local/bin/ty",
+      "args": ["server"],
       "settings": {
         "ty": {
-          "binary": {
-            "path": "/home/ronnyascencio/.local/bin/ty",
-            "arguments": ["server"]
+          "experimental": {
+            "rename": true
           },
+          "diagnosticMode": "workspace",
           "inlayHints": {
-            "variableTypes": true
+            "variableTypes": true,
+            "callArgumentNames": false
           }
         }
       }
     }
   },
-
   // =========================
   // 🖥️ Terminal integrado
   // =========================
