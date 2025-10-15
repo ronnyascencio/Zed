@@ -10,7 +10,7 @@
   // 🎨 Apariencia (Tema, iconos, fuentes)
   // =========================
   "theme": "JetBrains New Dark",
-  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "icon_theme": "JetBrains Icons Dark",
   "base_keymap": "VSCode", // Atajos estilo VSCode
   "buffer_font_size": 14, // Tamaño de fuente
   "buffer_line_height": "comfortable", // Altura de línea
@@ -82,22 +82,20 @@
   // =========================
   "lsp": {
     "ty": {
-      "command": "/home/ronnyascencio/.local/bin/ty",
-      "args": ["server"],
       "settings": {
-        "ty": {
-          "experimental": {
-            "rename": true
-          },
-          "diagnosticMode": "workspace",
-          "inlayHints": {
-            "variableTypes": true,
-            "callArgumentNames": false
-          }
+        "diagnosticMode": "workspace",
+        "inlayHints": {
+          "callArgumentNames": false,
+          "variableTypes": true
+        },
+        "experimental": {
+          "rename": true,
+          "autoImport": true
         }
       }
     }
   },
+
   // =========================
   // 🖥️ Terminal integrado
   // =========================
