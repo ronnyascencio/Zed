@@ -1,152 +1,161 @@
 {
   // =========================
-  // 🧠 Agente (acciones IA / herramientas)
+  // Editor Appearance
   // =========================
-  "agent": {
-    "always_allow_tool_actions": true
+  "base_keymap": "JetBrains",
+  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "vim_mode": false,
+  "inlay_hints": {
+    "show_other_hints": false,
+    "show_parameter_hints": false,
+    "show_type_hints": true,
+    "show_value_hints": true,
   },
-
-  // =========================
-  // 🎨 Apariencia (Tema, iconos, fuentes)
-  // =========================
-  "theme": "JetBrains New Dark",
-  "icon_theme": "JetBrains Icons Dark",
-  "base_keymap": "VSCode", // Atajos estilo VSCode
-  "buffer_font_size": 14, // Tamaño de fuente
-  "buffer_line_height": "comfortable", // Altura de línea
-  "cursor_shape": "block", // Forma del cursor
-  "cursor_blink": true, // Cursor parpadeante
-
-  // =========================
-  // 🛠️ Funcionalidades
-  // =========================
-  "features": {
-    "edit_prediction_provider": "copilot" // Usa GitHub Copilot para predicciones
+  "tab_bar": {
+    "show": true,
   },
-  "auto_update": true, // Auto actualizar Zed
-  "autosave": "on_focus_change", // Guardar al cambiar de ventana
-  "restore_on_startup": "none", // No restaurar sesiones previas
-  "show_completions_on_input": true, // Mostrar autocompletado al escribir
-  "auto_signature_help": true, // Ayuda de parámetros (signature help)
-
-  // =========================
-  // 📂 Navegación UI
-  // =========================
-  "toolbar": {
-    "breadcrumbs": false // Ocultar migas de pan
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_file_finder": true,
   },
-  "minimap": {
-    "show": "never",
-    "display_in": "active_editor",
-    "thumb": "always",
-    "thumb_border": "left_open",
-    "max_width_columns": 80,
-    "current_line_highlight": null
-  },
-  "scrollbar": {
-    "diagnostics": "all" // Mostrar diagnósticos en la barra
-  },
-
-  // =========================
-  // 🪟 Paneles activos
-  // =========================
   "active_pane_modifiers": {
     "border_size": 0.0,
-    "inactive_opacity": 1.0
+    "inactive_opacity": 1.0,
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": null,
+
+  "buffer_font_features": {
+    "calt": false, // ligatures
+  },
+  "lsp_document_colors": "none",
+  "wrap_guides": [0],
+  "show_edit_predictions": false,
+
+  // Theme & Colors
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "JetBrains Dark",
+  },
+  "experimental.theme_overrides": {
+    "background.appearance": "transparent",
+    // "syntax": {
+    //   "keyword": { "color": "#9D70FF" },
+    //   "function": { "color": "#BCBEC4" },
+  },
+  // },
+
+  // =========================
+  // Editor Behavior
+  // =========================
+  "autosave": {
+    "after_delay": { "milliseconds": 500 },
+  },
+  "format_on_save": "on",
+  "restore_on_startup": null,
+  "show_completions_on_input": true,
+
+  // =========================
+  // AI & Assistant Features
+  // =========================
+  "agent": {
+    "play_sound_when_agent_done": true,
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-thinking",
+    },
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4",
+    },
+  },
+  "edit_predictions": {
+    "mode": "subtle",
+    "enabled_in_text_threads": false,
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+    },
+  },
+  "features": {
+    "edit_prediction_provider": "zed",
   },
 
   // =========================
-  // 🐍 Lenguajes / LSP
+  // Git Integration
+  // =========================
+  "git": {
+    "inline_blame": { "enabled": false },
+  },
+
+  // =========================
+  // Language-Specific Settings
   // =========================
   "languages": {
     "Python": {
-      "format_on_save": "on", // Formato automático al guardar
-      "ensure_final_newline_on_save": true, // Asegurar newline al final
-      "language_servers": ["ty", "ruff"], // LSPs activos
+      "language_servers": ["!basedpyright", "ty"],
       "formatter": {
-        // Configurar Ruff como formateador
         "external": {
           "command": "/home/ronnyascencio/.local/bin/ruff",
-          "arguments": ["format", "--stdin-filename", "{buffer_path}", "-"]
-        }
-      }
+          "arguments": ["format", "--stdin-filename", "{buffer_path}", "-"],
+        },
+      },
+      "format_on_save": "on",
     },
-    "JSON": {
-      "format_on_save": "on", // Auto formatear JSON al guardar
-      "formatter": "prettier" // Usar prettier si está disponible
-    }
+    // Rust
+    "Rust": {
+      "formatter": {
+        "external": {
+          "command": "rustfmt",
+          "arguments": [],
+        },
+      },
+      "format_on_save": "on",
+    },
   },
 
   // =========================
-  // ⚙️ LSP (Configuración avanzada de servidores)
+  // LSP (Language Server Protocol) for Rust
   // =========================
   "lsp": {
-    "ty": {
-      "settings": {
-        "diagnosticMode": "workspace",
-        "inlayHints": {
-          "callArgumentNames": false,
-          "variableTypes": true
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy", // rust-analyzer.check.command (default: "check")
         },
-        "experimental": {
-          "rename": true,
-          "autoImport": true
-        }
-      }
-    }
+        "imports": {
+          "merge": { "glob": false },
+          "granularity": {
+            "enforce": true,
+            "group": "module",
+          },
+        },
+        "inlayHints": {
+          "maxLength": null,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true,
+          },
+          "closureReturnTypeHints": {
+            "enable": "always",
+          },
+        },
+      },
+    },
   },
-
-  // =========================
-  // 🖥️ Terminal integrado
-  // =========================
   "terminal": {
-    "shell": "system", // Usar shell del sistema
-    "detect_venv": {
-      "on": {
-        "directories": [".env", "env", ".venv", "venv"],
-        "activate_script": "default"
-      }
-    },
-    "working_directory": "current_project_directory",
-    "blinking": "on",
     "env": {
-      "PYTHONPATH": ".:./cli:./core:./dcc:./backend"
-    }
-  },
-
-  // =========================
-  // ▶️ Tareas
-  // =========================
-  "tasks": {},
-
-  // =========================
-  // 🔀 Git
-  // =========================
-  "git": {
-    "git_gutter": "tracked_files",
-    "inline_blame": {
-      "enabled": true
+      "VIRTUAL_ENV": ".venv",
     },
-    "hunk_style": "staged_hollow"
+    "copy_on_select": true,
   },
 
   // =========================
-  // 🩺 Diagnósticos
+  // Privacy & Telemetry
   // =========================
-  "diagnostics": {
-    "inline": {
-      "enabled": true,
-      "update_debounce_ms": 150,
-      "padding": 4,
-      "min_column": 0,
-      "max_severity": null
-    }
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
   },
-
-  // =========================
-  // 📄 Tipos de archivos
-  // =========================
-  "file_types": {
-    "Python": ["py", "pyi"]
-  }
 }
